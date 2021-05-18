@@ -1,0 +1,28 @@
+Example:
+
+suppose, we have an dataset with m(500k) samples and 28 attributes. 
+training set = 400k
+testing set = 100k
+
+Here, 28 attributes means the nearest perfect square number of 28 is 36(6*6).
+So, we need 36-28=8 nodes in the hidden dense layer. 
+built the NN with last layer with the number of classes. 
+Now, train whole Nuaral network with 'adam' optimizer with only training data.
+Then, we need to extract the feature from the hidden layer for the training and testing inputs only.
+Now, we got (m,8) from (m,28) in the extracted layer and concatenate on the horizonal axis.
+now, we got (m,28) + (m,8) = (m,36).
+now, reshape it (m,6,6)
+now, resize it using PIL library and get (m,32,32)
+now, copy it 3 times on the z-axis in order to get rgb like image and get (m,32,32,3).
+now, It will be ready to enter in DenseNet121 model from the keras.
+now, train the model with training set and evaluate it on the testing set.
+
+Note: we didn't use the test labels in whole process untill the last final training.
+
+Default Configuration on any dataset: 
+epoch	        20
+Batch size	128 to 1024
+optimizer	adam
+learning rate	0.001
+model	        densenet121
+GPU             Nvidia RTX 2070
